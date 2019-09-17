@@ -1,0 +1,43 @@
+<div style="text-align:left; height: 730px">
+  <div style="background-color:lightblue; padding: 5px">
+      <h3>Assignments</h3>
+  </div>
+  <div *ngIf="getAssignments() !== undefined" style="height: 680px" class="tableFixedHead">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Assignment Number</th>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Location of Problem</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let assignment of getAssignments(); let in = index">
+          <td><a [routerLink]="['/assignment/', assignment.id]">{{ assignment | assignmentNumber }}</a></td>
+          <td>{{ assignment.name }}</td>
+          <td><p>{{ assignment.address1 }}</p><p>{{ assignment.address2 }}</p><p>{{ assignment.address3 }}</p></td>
+          <td>{{ assignment.locationOfProblem }}</td>
+          <td>{{ assignment.city }}</td>
+          <td>{{ assignment.stateCode }}</td>
+          <td>{{ assignment.zipCode }}</td>
+          <td>{{ assignment.explanatoryText }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="getAssignments() === undefined">
+      <ul style="display: inline; align-content: right">
+        <li>
+            <h3>No Assignments Have Been Loaded</h3>
+        </li>
+        <li>
+            <h4>Download assignments from "My Assignments"</h4>
+        </li>
+      </ul>
+  </div>
+</div>

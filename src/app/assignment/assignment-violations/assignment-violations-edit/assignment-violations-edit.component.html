@@ -1,0 +1,89 @@
+<div class="container">
+  <div>
+      <hr>
+      <div *ngIf="violationForm.pristine && !violationForm.submitted">
+          <h4>Edit Violation</h4>
+      </div>
+      <div *ngIf="violationForm.pristine && violationForm.submitted">
+              <h5>{{ getAssignmentsDownloadStatus() }}</h5>
+              <h5>{{ getAssignmentDownloadStatus() }}</h5>
+      </div>
+      <p><span class="required">*</span>Indicates Required Field</p>
+      <hr>
+  </div>
+  <div>
+      <form [formGroup]="violationForm" class="form-horizontal" role="form" (ngSubmit)="onSubmit()" style="height: 570px; overflow-y: auto; overflow-x: hidden">
+        <div class="form-group">
+            <div class="col-lg-10">
+                <div class="form-group row">
+                    <label for="assigmentCompletedDate" class="col-lg-3 control-label">Violation Code ID</label>
+                    <div class="col-lg-3">
+                        <input class="form-control" type="text" id="violationCodeId" formControlName="violationCodeId" [value]="violationCodeId">
+                    </div>
+                    <button type="button" class="btn btn-sm btn-primary col-lg-2" (click)="showViolationCodeDialog()">Select Violation Code</button>
+                </div>
+                <div *ngIf="!violationForm.get('violationCodeId').valid && violationForm.get('violationCodeId').touched" class="form-group row">
+                    <span class="col-lg-3 control-label"></span>
+                    <span class="col-lg-6">A Valid Violation Code Id Is Required</span>
+                </div>
+                <div class="form-group row">
+                    <label for="comments" class="col-lg-3 control-label">Violation Description</label>
+                    <div class="col-lg-6">
+                        <textarea rows="4" cols="50" id="openingStatement" formControlName="violationDescription" readonly [value]="descriptionOfViolation"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="comments" class="col-lg-3 control-label">Print on Notice</label>
+                    <div class="col-lg-6">
+                        <textarea rows="4" cols="50" id="violationPrintOnNotice" formControlName="violationPrintOnNotice"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="comments" class="col-lg-3 control-label">DR Comments</label>
+                    <div class="col-lg-6">
+                        <textarea rows="4" cols="50" id="violationDrComments" formControlName="violationDrComments"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="purposeOfReport" class="col-lg-3 control-label">Permit Required?</label>
+                    <div class="col-lg-5">
+                        <select class="form-control" id="violationPermitRequired" formControlName="violationPermitRequired">
+                        <option>YES</option>
+                        <option>NO</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="purposeOfReport" class="col-lg-3 control-label">Cleared?</label>
+                    <div class="col-lg-5">
+                        <select class="form-control" id="violationCleared" formControlName="violationCleared">
+                        <option>YES</option>
+                        <option>NO</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="noticeSentDate" class="col-lg-3 control-label">Cleared Date</label>
+                    <div class="col-lg-3">
+                        <input type="date" class="form-control" id="violationClearedDate" formControlName="violationClearedDate">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="noticeSentDate" class="col-lg-3 control-label">Compliance Date</label>
+                    <div class="col-lg-3">
+                        <input type="text" class="form-control" id="violationComplianceDate" formControlName="violationComplianceDate" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <span class="col-lg-3 control-label"></span>
+                    <div class="col-lg-4">
+                        <button class="btn btn-primary" type="submit" [disabled]="!violationForm.valid">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </form>
+  </div>
+</div>
+
+

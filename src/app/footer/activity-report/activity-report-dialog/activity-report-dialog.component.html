@@ -1,0 +1,295 @@
+<div style="width: 1050px; height: 650px; overflow-y: auto; overflow-x: hidden">
+  <div class="container border border-dark" id="reportcontent">
+    <div class="row top15">
+      <div class="col col-sm-1">
+        <img src="/assets/images/hcd_logo_90x90_transparent.png" style="width: 120px; height: 120px">
+      </div>
+      <div class="col col-lg-11">
+        <div class="row justify-content-md-center">
+          <h6>STATE OF CALIFORNIA - BUSINESS, CONSUMER SERVICES, AND HOUSING AGENCY</h6>
+        </div>
+        <div class="row justify-content-md-center">
+          <h5>DEPARTMENT OF HOUSING AND COMMUNITY DEVELOPMENT</h5>
+        </div>
+        <div class="row justify-content-md-center">
+          <h5>DIVISION OF CODES AND STANDARDS</h5>
+        </div>
+        <div class="row justify-content-md-center">
+          <h4>ACTIVITY REPORT</h4>
+        </div>
+      </div>
+    </div>
+    <div class="top10 row text-nowrap border-top border-bottom border-dark">
+      <div class="col col-ms-2">
+          Date: {{ assignment.inspection.inspectionDate | date:'M/d/yyyy' }}
+      </div>
+      <div class="col col-lg-6">
+          Report By: {{ assignment.dr.drDisplay }} 
+      </div>
+      <div class="col col-lg-4">
+          DR's Telephone: {{ assignment.dr.drPhone }}
+      </div>
+    </div>
+    <div class="top10 row text-nowrap border-bottom border-dark">
+        <div class="col col-lg-3">
+            Permit#/DTN: {{ assignment.application.dtn }}
+        </div>
+        <div class="col col-lg-9">
+            Assignment: {{ assignment | assignmentNumber }}
+        </div>
+    </div>
+    <div class="top10 row border-bottom border-dark">
+        <div class="col col-lg-9">
+            Name: {{ assignment.application.customer | customerName }}
+        </div>
+        <div class="col col-lg-1">
+            Telephone:
+        </div>
+        <div class="col col-lg-2">
+            {{ assignment.application.customer.addresses[0].phones | phoneNumbers }}
+        </div>
+    </div>
+    <div class="top10 row border-bottom border-dark">
+        <div class="col col-lg-12">
+            Activity Site: {{ getActivitySiteAddress(assignment) }}
+        </div>
+    </div>
+    <div class="top10 row border-bottom border-dark">
+        <div class="col col-lg-3">
+            Park Id: {{ assignment.application.park.parkIdentifier }}
+        </div>
+        <div class="col col-lg-9">
+            Park Name: {{ assignment.application.park.parkName }}
+        </div>
+    </div>
+    <div class="top10 row border-bottom border-dark">
+        <div class="col col-lg-2">
+            Unit Type: {{ assignment.application.unit.unitType }}
+        </div>
+        <div class="col col-lg-3">
+            {{ getUnitIdentifier(assignment) }}
+        </div>
+        <div class="col col-lg-5">
+            Manufacturer: {{ assignment.application.unit.tradeName }}
+        </div>
+        <div class="col col-lg-2">
+            Year: {{ assignment.application.unit.manufacturedDate | date:'yyyy' }}
+        </div>
+    </div>
+    <div *ngIf="getSections(assignment).length > 0" class="top10 row border-bottom border-dark">
+        <div class="col col-lg-6">
+            <table class="table table-bordered">
+              <thead class="bg-secondary">
+                <tr>
+                  <th scope="col">Serial Number</th>
+                  <th scope="col">Insignia</th>
+                  <th scope="col">Length</th>
+                  <th scope="col">Width</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let section of getSections(assignment); let in = index">
+                <tr>
+                  <td>{{ section.serialNumber }}</td>
+                  <td>{{ section.insignia }}</td>
+                  <td>{{ section.length | feetAndInches }}</td>
+                  <td>{{ section.width | feetAndInches }}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="col col-lg-6">
+            <table class="table table-bordered">
+                <thead class="bg-secondary">
+                  <tr>
+                    <th scope="col" style="width: 33%">Registered Owner</th>
+                    <th scope="col" style="width: 66%">Mailing Address</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let owner of getOwners(assignment); let in = index">
+                  <tr>
+                    <td>{{ owner.customer | customerName }}</td>
+                    <td>{{ owner.address | customerAddress }}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="row border border-dark">
+        <h3 class="centered">Notice Of Violation</h3>
+    </div>
+    <div>
+      <p>
+          This report provides notice of violations or information related to the California Health and Safety Code Division 13 or the California Code of Regulations, Title 25, Division 1, Chapter 2, Sections indicated. Copies of the laws and regulations may be obtained from Barclays Law Publishers, P.O. Box 3066, South San Francisco, CA 94083-3066, or online at www.oal.ca.gov or at most public libraries.
+      </p>
+      <p>
+          If you believe this report has been issued in error or is legally or factually incorrect, you have a right to an informal review and/or hearing. Please contact the Area Supervisor at the Area Office indicated herein.
+      </p>
+    </div>
+    <div class="row border border-dark">
+      <div  class="col col-lg-4 no-gutters border border-dark" style="text-align: center">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th  scope="col"  colspan="3" style="text-align: right; padding-right: 1px">AREA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="assignment.location.acronym === 'NAO'" >
+              <td colspan="1"><img src="/assets/images/selected_check_box_100x100_transp.png" style="height: 15px; width: 15px"></td>
+              <td colspan="2">NORTHERN AREA OFFICE</td>
+            </tr>
+            <tr *ngIf="assignment.location.acronym !== 'NAO'" >
+                <td colspan="1"><img src="/assets/images/check_box_100x100_transp.png" style="height: 15px; width: 15px"></td>
+                <td colspan="2">NORTHERN AREA OFFICE</td>
+            </tr>
+            <tr>
+              <td colspan="3">9342 TECH CENTER DRIVE, SUITE 550</td>
+            </tr>
+            <tr>
+              <td colspan="3">SACRAMENTO, CA 95826-2581</td>
+            </tr>
+            <tr>
+              <td colspan="3">(916) 255-2501</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div  class="col col-lg-4 padding-0 border border-dark" style="text-align: center">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col"  colspan="3"  style="text-align: left; padding-left: 1px">OFFICES</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="assignment.location.acronym === 'NAO'" >
+              <td colspan="1"><img src="/assets/images/check_box_100x100_transp.png" style="height: 15px; width: 15px"></td>
+              <td colspan="2">SOUTHERN AREA OFFICE</td>
+            </tr>
+            <tr *ngIf="assignment.location.acronym !== 'NAO'" >
+                <td colspan="1"><img src="/assets/images/selected_check_box_100x100_transp.png" style="height: 15px; width: 15px"></td>
+                <td colspan="2">SOUTHERN AREA OFFICE</td>
+            </tr>
+            <tr>
+              <td colspan="3">3737 MAIN STREET, SUITE 400</td>
+            </tr>
+            <tr>
+              <td colspan="3">RIVERSIDE, CA 92501-3337</td>
+            </tr>
+            <tr>
+              <td colspan="3">(951) 782-4420</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col col-lg-4 no-gutters">
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th style="text-align: center" scope="col" colspan="6">FEE ACCOUNTING</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="2" style="width: 40%"></td>
+              <td colspan="2" style="width: 30%">DUE</td>
+              <td colspan="2" style="width: 30%">ATTACHED</td>
+            </tr>
+            <tr>
+              <td colspan="2">INSPECTION</td>
+              <td colspan="2"></td>
+              <td colspan="2"></td>
+            </tr>
+            <tr>
+              <td colspan="2">INSIGNIA</td>
+              <td colspan="2"></td>
+              <td colspan="2"></td>
+            </tr>
+            <tr>
+              <td colspan="2">OTHER</td>
+              <td colspan="2"></td>
+              <td colspan="2"></td>
+            </tr>
+            <tr>
+              <td colspan="3">Attached Fee ID:</td>
+              <td colspan="3"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row border border-dark">
+        <h5 class="left5">INSPECTION RESULTS OR INFORMATION:</h5>
+    </div>
+    <div class="row border border-dark">
+        <p class="left5">{{ assignment.inspection.inspectionResults }}</p>
+    </div>
+    <div class="row border border-dark">
+        <h5 class="left5">Inspection Action Type:</h5><p class="left10">{{ assignment.inspection.inspectionActionType }}</p>
+    </div>
+    <div class="row border border-dark" >
+        <table class="table table-bordered">
+          <thead *ngFor="let violation of getViolations(); let in = index">
+            <tr class="bg-secondary">
+              <th scope="col">Violation #</th>
+              <th scope="col">Description</th>
+              <th scope="col">Code</th>
+              <th scope="col">Permit Required</th>
+              <th scope="col">Status Date</th>
+              <th scope="col">Compliance Date</th>
+            </tr>
+            <tr>
+              <td>{{ in + 1 }}</td>
+              <td>{{ getViolationCode(violation).shortDescription }}</td>
+              <td>{{ getViolationCode(violation).legacyCode }}</td>
+              <td>{{ violation.permitRequired }}</td>
+              <td>{{ violation.statusDate | date:'M/d/yyyy' }}</td>
+              <td>{{ violation.complianceDate |  complianceDate: 'MM/dd/yyyy'}}</td>
+            </tr>
+            <tr>
+              <td>Violation Description</td>
+              <td colspan="5">
+                {{ violation.descriptionOfViolation }}
+              </td>
+            </tr>
+            <tr *ngIf="violation.additionalPrintOnNotice !== undefined && violation.additionalPrintOnNotice !== ''">
+              <td>Violation Detail</td>
+                <td colspan="5">
+                  {{ violation.additionalPrintOnNotice }}
+                </td>
+              </tr>
+          </thead>
+        </table>
+    </div>
+    <div class="row border border-dark">
+      <div class="col col-lg-6">
+        Received By:
+      </div>
+      <div class="col col-lg-6">
+        Title:
+      </div>
+    </div>
+    <div class="row border border-dark">
+      <div class="col col-lg-10">
+        Reviewed By:
+      </div>
+      <div class="col col-lg-2">
+        Date:
+      </div>
+    </div>
+    <div class="row border border-dark">
+      <div class="col col-lg-10">
+        Copies Sent By:
+      </div>
+      <div class="col col-lg-2">
+        Date:
+      </div>
+    </div>
+  </div>
+</div>
+<div class="btn-group top10" role="group">
+    <button class="btn btn-sm btn-primary float-left col-lg-2" (click)=createReport()>Create Actvity Report</button>
+    <span class="col-lg-8"></span>
+    <button class="btn btn-sm btn-primary float-right col-lg-2" (click)=closeDialog()>Close</button>
+</div>
+

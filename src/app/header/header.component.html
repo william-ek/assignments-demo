@@ -1,0 +1,29 @@
+<div class="container-fluid" style="background-color: darkorange">
+  <table style="width: 100%">
+    <thead>
+      <tr>
+        <th style="width: 100px">
+          <img src="/assets/images/small_logo_transparent.png" style="height: 100px; width: 100px">
+        </th>
+        <th>
+          <h1>
+            California Housing and Community Development
+          </h1>
+        </th>
+      </tr>
+      <tr>
+        <th></th>
+        <th>
+          <div class="row justify-content-end">
+              <button mat-icon-button [matMenuTriggerFor]="option" class="fa fa-bars fa-2x"></button>
+              <mat-menu #option="matMenu">
+                <a mat-menu-item routerLink="/home">Home</a>
+                <a mat-menu-item routerLink="/assignments">Assignments</a>
+                <a mat-menu-item routerLink="/violationcodes">Violation Codes</a>
+              </mat-menu>
+          </div>
+        </th>
+      </tr>
+    </thead>
+  </table>
+</div>

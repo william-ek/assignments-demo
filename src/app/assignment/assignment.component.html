@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg lightblue">
+    <h4>Assignment: {{ assignment | assignmentNumber }}</h4>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+        <div class="nav nav-tabs">
+            <a [routerLink]="['/assignment/', assignment.id, 'detail']" class="nav-item nav-link active" routerLinkActive="active">Detail</a>
+            <a [routerLink]="['/assignment/', assignment.id, 'customer']" class="nav-item nav-link" routerLinkActive="active">Customer</a>
+            <a [routerLink]="['/assignment/', assignment.id, 'applicant']" class="nav-item nav-link" routerLinkActive="active">Application</a>
+            <a [routerLink]="['/assignment/', assignment.id, 'unit']" class="nav-item nav-link" routerLinkActive="active">Unit</a>
+            <a [routerLink]="['/assignment/', assignment.id, 'inspection']" class="nav-item nav-link" routerLinkActive="active">Inspection</a>
+            <a [routerLink]="['/assignment/', assignment.id, 'violations']" class="nav-item nav-link" routerLinkActive="active">Violations</a>
+            <a routerLink="/assignments" class="nav-item nav-link">Back to List</a>
+        </div>
+    </div>
+</nav>
+<div>
+    <router-outlet></router-outlet>
+</div>

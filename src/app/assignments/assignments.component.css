@@ -1,0 +1,23 @@
+.tableFixedHead  {
+  overflow-y: auto;
+  height: 50px;
+}
+
+.tableFixedHead thead th {
+  position: sticky;
+  top: 0;
+}
+
+th {
+  background: white;
+  white-space: nowrap;
+}
+
+thead tr {
+  border-bottom: 1px solid black;
+}
+
+thead th {
+  background-color: lightgray;
+}
+

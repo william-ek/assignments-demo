@@ -1,0 +1,112 @@
+<div class="container">
+    <div>
+      <form style="height: 650px; overflow-y: auto; overflow-x: hidden">
+        <div class="form-group col-lg-10 top10">
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="assignmentType" class="control-label">Assignment Type:</label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="assignmentType" class="form-control" value="{{ assignment.assignmentType }}" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="status" class="control-label">Status:</label>            
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="status" class="form-control" value="{{ assignment.status }}" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="statusDate" class="control-label">Status Date:</label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="statusDate" class="form-control" value="{{ assignment.statusDate | date: 'MM/dd/yyyy' }}" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="inspectionRequestedDate" class="control-label">Inspection Requested Date:</label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="inspectionRequestedDate" class="form-control" value="{{ assignment.inspectionRequestedDate | date: 'MM/dd/yyyy' }}" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="previousAssignment" class="control-label">Previous Assignment:</label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="previousAssignment" class="form-control" value="{{ assignment.previousAssignment }}" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="name" class="control-label">Name:</label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="name" class="form-control" value="{{ assignment.name }}" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="phoneNumber" class="control-label">Phone Number:</label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="phoneNumber" class="form-control" value="{{ assignment.phoneNumber | phoneNumber}}" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="address1" class="control-label">Address:</label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="address1" class="form-control" value="{{ assignment.address1 }}" readonly>
+            </div>
+          </div>
+          <div  *ngIf="assignment.address2 !== undefined && assignment.address2 !== ''"  class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="address2" class="control-label"></label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="address2" class="form-control" value="{{ assignment.address2 }}" readonly>
+            </div>
+          </div>
+          <div *ngIf="assignment.address3 !== undefined &&  assignment.address3 !== ''" class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="address3" class="control-label"></label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="address3" class="form-control" value="{{ assignment.address3 }}" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="cityStateZip" class="control-label">City, State Zip:</label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="cityStateZip" class="form-control" value="{{assignment.city}}, {{ assignment.stateCode }} {{ assignment.zipCode }}" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="locationOfProblem" class="control-label">Location of Problem:</label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="locationOfProblem" class="form-control" value="{{ assignment.locationOfProblem }}" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="explanatoryText" class="control-label">Description of Work:</label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="explanatoryText" class="form-control" value="{{ assignment.explanatoryText }}" readonly>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

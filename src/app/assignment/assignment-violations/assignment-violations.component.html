@@ -1,0 +1,44 @@
+<div style="text-align:left">
+    <div *ngIf="getViolations() !== undefined" style="height: 680px; overflow-y: auto; overflow-x: hidden" class="tableFixedHead">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Code</th>
+            <th>Lot ID</th>
+            <th>Street Location</th>
+            <th>Cleared</th>
+            <th>Description</th>
+            <th>DR Comments</th>
+            <th>Status</th>
+            <th>Violation Compliance Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let violation of getViolations(); let in = index">
+            <td>{{ violation.shortDescription }}</td>
+            <td>{{ violation.legacyCode }}</td>
+            <td>{{ violation.lotId }}</td>
+            <td>{{ violation.lotStreet }}</td>
+            <td *ngIf="violation.cleared === 'true'">{{ violation.violationClearedDate | date: 'MM/dd/yyyy' }}</td>
+            <td *ngIf="violation.cleared === 'false'"><button type="button" (click)="clearViolation(violation)">Clear</button></td>
+            <td>{{ violation.longDescription }}</td>
+            <td>{{ violation.comments }}</td>
+            <td>{{ violation.status }} since {{ violation.statusDate | date: 'MM/dd/yyyy'}}</td>
+            <td>{{ violation.complianceDate | complianceDate: 'MM/dd/yyyy'}}</td>
+            <td>
+              <table>
+                <thead>
+                  <tr style="background-color: transparent; border: transparent">
+                    <th style="background-color: transparent; border: transparent"><button (click)="editViolation(violation)" class="fa fa-edit"></button></th>
+                    <th *ngIf="violation.id === 'new'" style="background-color: transparent; border: transparent"><button (click)="deleteViolation(violation)" class="fa fa-trash"></button></th>
+                  </tr>
+                </thead>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

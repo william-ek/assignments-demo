@@ -1,0 +1,57 @@
+<div class="container">
+    <div>
+      <form style="height: 650px; overflow-y: auto; overflow-x: hidden">
+        <div class="form-group col-lg-10 top10">
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="dtn" class="control-label">DTN:</label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="dtn" class="form-control" value="{{ application.dtn }}" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="program" class="control-label">Program:</label>            
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="program" class="form-control" value="{{ application.program }}" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="receivedDate" class="control-label">Received Date:</label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="receivedDate" class="form-control" value="{{ application.receivedDate | date: 'MM/dd/yyyy' }}" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="location" class="control-label">Location:</label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="location" class="form-control" value="{{ application.location }}" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col col-lg-3 font-weight-bold text-right">
+              <label for="unitOnPrivProp" class="control-label">On Private Property:</label>
+            </div>
+            <div  class="col col-lg-7">
+              <input type="text" id="unitOnPrivProp" class="form-control" value="{{ application.unitOnPrivProp }}" readonly>
+            </div>
+          </div>
+          <app-park *ngIf="application.unitOnPrivProp === 'false'" [park]="application.park"></app-park>
+          <fieldset class="scheduler-border">
+              <legend class="scheduler-border">Customer</legend>
+              <app-customer [customer]="application.customer"></app-customer>
+          </fieldset>
+          <fieldset class="scheduler-border">
+              <legend class="scheduler-border">Unit</legend>
+              <app-unit [unit]="application.unit"></app-unit>
+          </fieldset>
+        </div>
+      </form>
+    </div>
+  </div>

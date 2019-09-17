@@ -1,0 +1,41 @@
+<div style="text-align:left; padding-left: 10px; padding-right: 10px">
+    <div style="height: 650px" class="tableFixedHead">
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th style="width: 50px" class="stickyFirstHeader">Select</th>
+            <th style="width: 200px" class="stickyFirstHeader">Category</th>
+            <th style="width: 400px" class="stickyFirstHeader">Code</th>
+            <th style="width: 200px" class="stickyFirstHeader">Code Sections</th>
+            <th style="width: 100px" class="stickyFirstHeader">Legacy Code</th>
+            <th class="stickyFirstHeader">Long Description</th>
+          </tr>
+          <tr>
+            <th  class="stickySecondHeader"></th>
+            <th  class="stickySecondHeader"><input type=text (input)="onFilterInput($event.target.value)" [(ngModel)]="categoryFilter"></th>
+            <th  class="stickySecondHeader"><input type=text (input)="onFilterInput($event.target.value)" [(ngModel)]="codeFilter"></th>
+            <th  class="stickySecondHeader"><input type=text (input)="onFilterInput($event.target.value)" [(ngModel)]="codeSectionFilter"></th>
+            <th  class="stickySecondHeader"><input type=text (input)="onFilterInput($event.target.value)" [(ngModel)]="legacyCodeFilter" size="10"></th>
+            <th  class="stickySecondHeader"><input type=text (input)="onFilterInput($event.target.value)" [(ngModel)]="descriptionFilter"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let violationCode of selectedViolationCodes; let in = index">
+            <td><input type="radio" name="selectedId" value=violationCode (click)="violationSelected(violationCode)"></td>
+            <td style="width: 200px">{{ violationCode.category }}</td>
+            <td style="width: 400px">{{ violationCode.code }}</td>
+            <td style="width: 200px">{{ violationCode.codeSections }}</td>
+            <td style="width: 100px">{{ violationCode.legacyCode }}</td>
+            <td>{{ violationCode.longDescription }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="btn-group top10" role="group">
+      <button class="btn btn-sml btn-primary float-left col-lg-3" [mat-dialog-close]="selectedViolationCode"  [disabled]="!violationCodeSelected">Select Violation Code</button>
+      <span class="col-lg-7"></span>
+      <button class="btn btn-sm btn-primary float-right col-lg-2" (click)=closeDialog()>Cancel</button>
+  </div>
+  
+  

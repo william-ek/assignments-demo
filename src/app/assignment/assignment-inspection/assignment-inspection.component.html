@@ -1,0 +1,181 @@
+<div class="container">
+    <div>
+        <hr>
+        <div *ngIf="f.pristine && !f.submitted">
+            <h4>Enter Inspection Results</h4>
+        </div>
+        <div *ngIf="f.pristine && f.submitted">
+                <h5>{{ getAssignmentsDownloadStatus() }}</h5>
+                <h5>{{ getAssignmentDownloadStatus() }}</h5>
+        </div>
+        <p><span class="required">*</span>Indicates Required Field</p>
+        <hr>
+    </div>
+    <div>
+        <form class="form-horizontal" role="form" (ngSubmit)="onSubmit(f)" #f="ngForm" style="height: 550px; overflow-y: auto; overflow-x: hidden">
+            <div class="form-group">
+                <div class="col-lg-10">
+                    <div class="form-group row">
+                        <label for="inspectionDate" class="col-lg-3 control-label">Inspection Date<span class="required">*</span></label>
+                        <div class="col-lg-3">
+                            <input type="date"
+                            class="form-control" 
+                            id="inspectionDate" 
+                            [ngModel]="inspection.inspectionDate"
+                            name="inspectionDate" 
+                            required 
+                            #inspectionDate="ngModel"
+                            (change)="onSelections(f)">
+                            <div>
+                                <span>{{ inspectionDateError }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="assigmentStartDate" class="col-lg-3 control-label">Assignment Start Date</label>
+                        <div class="col-lg-3">
+                            <input type="date" class="form-control" id="assigmentStartDate" [ngModel]="inspection.startDate" name="assigmentStartDate">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="assigmentCompletedDate" class="col-lg-3 control-label">Completed Date</label>
+                        <div class="col-lg-3">
+                            <input type="date" class="form-control" id="assigmentCompletedDate" [ngModel]="inspection.assigmentCompletedDate" name="assigmentCompletedDate">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="purposeOfReport" class="col-lg-3 control-label">Purpose Of Report<span class="required">*</span></label>
+                        <div class="col-lg-5">
+                            <select class="form-control" id="purposeOfReport" [ngModel]="inspection.purposeOfReport"  name="purposeOfReport" required>
+                            <option>Information Only</option>
+                            <option>Inspection Record Only</option>
+                            <option>Notice of Violation & Related Information</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="comments" class="col-lg-3 control-label">Comments</label>
+                        <div class="col-lg-6">
+                            <textarea rows="4" cols="50" class="form-control" id="openingStatement" [ngModel]="inspection.openingStatement" name="openingStatement"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inspectionResults" class="col-lg-3 control-label">Inspection Results<span class="required">*</span></label>
+                        <div class="col-lg-6">
+                            <textarea rows="4" cols="50" class="form-control" id="inspectionResults" [ngModel]="inspection.inspectionResults" name="inspectionResults" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="recommendations" class="col-lg-3 control-label">Recommendations</label>
+                        <div class="col-lg-6">
+                            <textarea rows="4" cols="50" class="form-control" id="recommendations" [ngModel]="inspection.recommendations" name="recommendations"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inspectionActionType" class="col-lg-3 control-label">Inspection Action Type<span class="required">*</span></label>
+                        <div class="col-lg-6">
+                            <select class="form-control" id="inspectionActionType" [ngModel]="inspection.inspectionActionType" name="inspectionActionType" required>
+                                <option>Close File</option>
+                                <option>Progress Inspection Required</option>
+                                <option>Reinspection Required</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="enforcementActionType" class="col-lg-3 control-label">Enforcement Action Type</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" id="enforcementActionType" [ngModel]="inspection.enforcementActionType" name="enforcementActionType">
+                            <option>Final Compliance Order</option>
+                            <option>Notice of Intent</option>
+                            <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="facilityId" class="col-lg-3 control-label">Facility ID</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="facilityId" [ngModel]="inspection.facilityId" name="facilityId">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="activitySite" class="col-lg-3 control-label">Activity Site</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="activitySite" [ngModel]="inspection.activitySite" name="activitySite">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="feeDue" class="col-lg-3 control-label">Fee Due</label>
+                        <div class="col-lg-2">
+                            <input type="number" step="1" max="1000" class="form-control" id="feeDue" [ngModel]="inspection.feeDue" name="feeDue">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 control-label">Inspection Time<span class="required">*</span></label>
+                        <div class="col-lg-2">
+                            <input type="number" step="1" min="0" max="10" class="form-control" id="inspectionTimeHours" [ngModel]="inspection.inspectionTimeHours" name="inspectionTimeHours" required>
+                        </div>
+                        <label for="inspectionTimeHours" class="col-lg-1 control-label">Hours</label>
+                        <div class="col-lg-2">
+                            <input type="number" step="1" min="0" max="60" class="form-control" id="inspectionTimeMinutes" [ngModel]="inspection.inspectionTimeMinutes" name="inspectionTimeMinutes" required>
+                        </div>
+                        <label for="inspectionTimeMinutes" class="col-lg-1 control-label">Minutes</label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 control-label">Travle Time<span class="required">*</span></label>
+                        <div class="col-lg-2">
+                            <input type="number" step="1" min="0" max="10" class="form-control" id="travelTimeHours" [ngModel]="inspection.travelTimeHours" name="travelTimeHours" required>
+                        </div>
+                        <label for="travelTimeHours" class="col-lg-1 control-label">Hours</label>
+                        <div class="col-lg-2">
+                            <input type="number" step="1" min="0" max="60" class="form-control" id="travelTimeMinutes" [ngModel]="inspection.travelTimeMinutes" name="travelTimeMinutes" required>
+                        </div>
+                        <label for="travelTimeMinutes" class="col-lg-1 control-label">Minutes</label>
+                    </div>
+                    <div class="form-group row">
+                        <label for="travelMiles" class="col-lg-3 control-label">Travel Miles<span class="required">*</span></label>
+                        <div class="col-lg-2">
+                            <input type="number" step="1" min="1" max="500" class="form-control" id="travelMiles" [ngModel]="inspection.travelMiles" name="travelMiles" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="resultsEnteredDate" class="col-lg-3 control-label">Results Entered Date</label>
+                        <div class="col-lg-3">
+                            <input type="date" class="form-control" id="resultsEnteredDate" [ngModel]="inspection.resultsEnteredDate" name="resultsEnteredDate">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="noticeSentDate" class="col-lg-3 control-label">Notice Sent Date</label>
+                        <div class="col-lg-3">
+                            <input type="date" class="form-control" id="noticeSentDate" [ngModel]="inspection.noticeSentDate" name="noticeSentDate">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 control-label">Reviewed By</label>
+                        <div class="col-lg-3">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 control-label">Created By</label>
+                        <div class="col-lg-3">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 control-label">Last Updated By</label>
+                        <div class="col-lg-3">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <span class="col-lg-3 control-label"></span>
+                        <div class="col-lg-4">
+                            <button class="btn btn-primary" type="submit" [disabled]="!f.valid">
+                                <span (mouseover)="onButtonHover(f)" title="{{ buttonTitle }}">Submit</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+        </form>
+    </div>
+</div>
+  

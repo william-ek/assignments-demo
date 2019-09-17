@@ -1,0 +1,23 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Unit Sections</legend>
+      <div>
+        <table class="table table-bordered">
+          <thead class="bg-secondary">
+            <tr>
+              <th scope="col">Serial Number</th>
+              <th scope="col">Insignia</th>
+              <th scope="col">Length</th>
+              <th scope="col">Width</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let section of getSections(); let in = index">
+            <tr>
+              <td>{{ section.serialNumber }}</td>
+              <td>{{ section.insignia }}</td>
+              <td>{{ section.length | feetAndInches }}</td>
+              <td>{{ section.width | feetAndInches }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</fieldset>

@@ -1,0 +1,13 @@
+.full-width-table {
+  width: 100%;
+}
+
+.cool-table {
+  width: 90%;
+  margin: 20px auto;
+}
+
+th {
+  white-space: nowrap;
+  padding: 5px;
+}

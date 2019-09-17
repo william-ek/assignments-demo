@@ -1,0 +1,43 @@
+<div class="mat-elevation-z8">
+  <mat-paginator #paginator
+      [length]="dataSource.data.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 25, 50, 100, 250]">
+  </mat-paginator>
+
+  <table mat-table class="cool-table table table-bordered table-stripped" [dataSource]="dataSource" matSort aria-label="Elements">
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+      <td mat-cell *matCellDef="let row">{{row.category}}</td>
+    </ng-container>
+
+    <!-- Code Column -->
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+      <td mat-cell *matCellDef="let row">{{row.code}}</td>
+    </ng-container>
+
+    <!-- Code Sections Column -->
+    <ng-container matColumnDef="codeSections">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Code Sections</th>
+      <td mat-cell *matCellDef="let row">{{row.codeSections}}</td>
+    </ng-container>
+
+    <!-- Legacy Code Column -->
+    <ng-container matColumnDef="legacyCode">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Legacy Code</th>
+      <td mat-cell *matCellDef="let row">{{row.legacyCode}}</td>
+    </ng-container>
+
+    <!-- Long Description Column -->
+    <ng-container matColumnDef="longDescription">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Long Description</th>
+      <td mat-cell *matCellDef="let row">{{row.longDescription}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

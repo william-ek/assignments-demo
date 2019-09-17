@@ -1,0 +1,82 @@
+<div class="container">
+  <div>
+    <form style="height: 650px; overflow-y: auto; overflow-x: hidden">
+      <div class="form-group col-lg-10 top10">
+        <div class="form-group row">
+          <div class="col col-lg-3 font-weight-bold text-right">
+            <label for="assignmentType" class="control-label">Customer Type:</label>
+          </div>
+          <div  class="col col-lg-7">
+            <input type="text" id="customerType" class="form-control" value="{{ customer.customerType }}" readonly>
+          </div>
+        </div>
+        <div *ngIf="customer.customerType === 'PERSON'" class="form-group row">
+          <div class="col col-lg-3 font-weight-bold text-right">
+            <label for="firstName" class="control-label">First Name:</label>            
+          </div>
+          <div  class="col col-lg-7">
+            <input type="text" id="firstName" class="form-control" value="{{ customer.firstName }}" readonly>
+          </div>
+        </div>
+        <div *ngIf="customer.customerType === 'PERSON' && customer.middleName !== ''" class="form-group row">
+          <div class="col col-lg-3 font-weight-bold text-right">
+            <label for="middleName" class="control-label">First Name:</label>            
+          </div>
+          <div  class="col col-lg-7">
+            <input type="text" id="middleName" class="form-control" value="{{ customer.middleName }}" readonly>
+          </div>
+        </div>
+        <div *ngIf="customer.customerType === 'PERSON'" class="form-group row">
+          <div class="col col-lg-3 font-weight-bold text-right">
+            <label for="lastName" class="control-label">Last Name:</label>            
+          </div>
+          <div  class="col col-lg-7">
+            <input type="text" id="lastName" class="form-control" value="{{ customer.lastName }}" readonly>
+          </div>
+        </div>
+        <div *ngIf="customer.customerType === 'COMPANY'" class="form-group row">
+          <div class="col col-lg-3 font-weight-bold text-right">
+            <label for="legalName" class="control-label">Legal Name:</label>            
+          </div>
+          <div  class="col col-lg-7">
+            <input type="text" id="legalName" class="form-control" value="{{ customer.legalName }}" readonly>
+          </div>
+        </div>
+        <div *ngIf="customer.customerType === 'COMPANY'" class="form-group row">
+          <div class="col col-lg-3 font-weight-bold text-right">
+            <label for="companyAcronym" class="control-label">ACRONYM:</label>            
+          </div>
+          <div  class="col col-lg-7">
+            <input type="text" id="companyAcronym" class="form-control" value="{{ customer.companyAcronym }}" readonly>
+          </div>
+        </div>
+        <div *ngIf="customer.customerType === 'COMPANY'" class="form-group row">
+          <div class="col col-lg-3 font-weight-bold text-right">
+            <label for="companyStructure" class="control-label">Company Structure:</label>            
+          </div>
+          <div  class="col col-lg-7">
+            <input type="text" id="companyStructure" class="form-control" value="{{ customer.companyStructure }}" readonly>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col col-lg-3 font-weight-bold text-right">
+            <label for="status" class="control-label">Status:</label>
+          </div>
+          <div  class="col col-lg-7">
+            <input type="text" id="status" class="form-control" value="{{ customer.status }}" readonly>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col col-lg-3 font-weight-bold text-right">
+            <label for="statusDate" class="control-label">Status Date:</label>
+          </div>
+          <div  class="col col-lg-7">
+            <input type="text" id="statusDate" class="form-control" value="{{ customer.statusDate | date: 'MM/dd/yyyy' }}" readonly>
+          </div>
+        </div>
+        <app-address [addresses]="customer.addresses"></app-address>
+      </div>
+    </form>
+  </div>
+</div>
+  

@@ -1,0 +1,81 @@
+<div>
+  <form>
+    <div class="form-group col-lg-12 top10">
+      <div class="form-group row">
+        <div class="col col-lg-3 font-weight-bold text-right">
+          <label for="tradeName" class="control-label">Trade Name:</label>
+        </div>
+        <div  class="col col-lg-7">
+          <input type="text" id="tradeName" class="form-control" value="{{ unit.tradeName }}" readonly>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col col-lg-3 font-weight-bold text-right">
+          <label for="model" class="control-label">Model:</label>            
+        </div>
+        <div  class="col col-lg-7">
+          <input type="text" id="model" class="form-control" value="{{ unit.model }}" readonly>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col col-lg-3 font-weight-bold text-right">
+          <label for="manufacturerConversionName" class="control-label">Manufacturer Conversion Name:</label>            
+        </div>
+        <div  class="col col-lg-7">
+          <input type="text" id="manufacturerConversionName" class="form-control" value="{{ unit.manufacturerConversionName }}" readonly>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col col-lg-3 font-weight-bold text-right">
+          <label for="unitType" class="control-label">Unit Type:</label>            
+        </div>
+        <div  class="col col-lg-7">
+          <input type="text" id="unitType" class="form-control" value="{{ unit.unitType }}" readonly>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col col-lg-3 font-weight-bold text-right">
+          <label for="foundationType" class="control-label">Foundation Type:</label>            
+        </div>
+        <div  class="col col-lg-7">
+          <input type="text" id="foundationType" class="form-control" value="{{ unit.foundationType }}" readonly>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col col-lg-3 font-weight-bold text-right">
+          <label for="firstSoldDate" class="control-label">First Sold Date:</label>            
+        </div>
+        <div  class="col col-lg-7">
+          <input type="text" id="firstSoldDate" class="form-control" value="{{ unit.firstSoldDate | date: 'MM/dd/yyyy' }}" readonly>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col col-lg-3 font-weight-bold text-right">
+          <label for="originalSalePrice" class="control-label">Original Sales Price:</label>            
+        </div>
+        <div  class="col col-lg-7">
+          <input type="text" id="originalSalePrice" class="form-control" value="{{ unit.originalSalePrice | currency }}" readonly>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col col-lg-3 font-weight-bold text-right">
+          <label for="status" class="control-label">Status:</label>
+        </div>
+        <div  class="col col-lg-7">
+          <input type="text" id="status" class="form-control" value="{{ unit.status }}" readonly>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col col-lg-3 font-weight-bold text-right">
+          <label for="statusDate" class="control-label">Status Date:</label>
+        </div>
+        <div  class="col col-lg-7">
+          <input type="text" id="statusDate" class="form-control" value="{{ unit.statusDate | date: 'MM/dd/yyyy' }}" readonly>
+        </div>
+      </div>
+      <app-address [addresses]="unit.addresses"></app-address>
+      <app-unit-sections [sections]="unit.unitSections"></app-unit-sections>
+      <app-unit-owners [owners]="unit.unitOwners"></app-unit-owners>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,19 @@
+<fieldset class="scheduler-border">
+  <legend class="scheduler-border">Unit Owners</legend>
+  <div>
+    <table class="table table-bordered">
+      <thead class="bg-secondary">
+        <tr>
+          <th scope="col" style="width: 33%">Registered Owner</th>
+          <th scope="col" style="width: 66%">Mailing Address</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let owner of getOwners(); let in = index">
+        <tr>
+          <td>{{ owner.customer | customerName }}</td>
+          <td>{{ owner.address | customerAddress }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</fieldset>

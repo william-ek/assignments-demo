@@ -1,0 +1,9 @@
+.required {
+  color: red;
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+.form-control.ng-invalid {
+  border: 1px solid red;
+}

@@ -1,0 +1,10 @@
+<div class="fluid-container" style="background-color: rgb(233, 233, 134); height: 50px; width: 100%">
+  <div class="row no-gutters">
+    <div *ngIf="getViolationAddState() === true">
+        <router-outlet name="addViolation"></router-outlet>
+    </div>
+    <div *ngIf="getViolationState() === true">
+        <router-outlet name="activityReport"></router-outlet>
+    </div>
+  </div>
+</div>

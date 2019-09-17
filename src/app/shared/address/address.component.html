@@ -1,0 +1,36 @@
+<fieldset class="scheduler-border">
+  <legend class="scheduler-border">Addresses</legend>
+  <div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Address Type</th>
+          <th>Address</th>
+          <th>Phones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let address of addresses">
+          <td>{{ address.addressType }}</td>
+          <td>{{ address | customerAddress }}</td>
+          <td>
+            <table>
+              <thead>
+                <tr>
+                  <th>Phone Type</th>
+                  <th>Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let phone of address.phones">
+                  <td>{{ phone.phoneType }}</td>
+                  <td>{{ phone.phoneNumber | phoneNumber }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</fieldset>
